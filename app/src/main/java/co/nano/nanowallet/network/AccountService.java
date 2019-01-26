@@ -36,6 +36,7 @@ import co.nano.nanowallet.model.PreconfiguredRepresentatives;
 import co.nano.nanowallet.network.model.BaseResponse;
 import co.nano.nanowallet.network.model.BlockTypes;
 import co.nano.nanowallet.network.model.RequestItem;
+import co.nano.nanowallet.network.model.request.AccountCheckRequest;
 import co.nano.nanowallet.network.model.request.AccountHistoryRequest;
 import co.nano.nanowallet.network.model.request.GetBlocksInfoRequest;
 import co.nano.nanowallet.network.model.request.PendingTransactionsRequest;
@@ -601,9 +602,10 @@ public class AccountService {
      */
     public void requestUpdate() {
         if (address != null && address.getAddress() != null) {
-            requestQueue.add(new RequestItem<>(new SubscribeRequest(address.getAddress(), getLocalCurrency(), wallet.getUuid())));
             requestQueue.add(new RequestItem<>(new AccountHistoryRequest(address.getAddress(), wallet.getBlockCount() != null ? wallet.getBlockCount() : 10)));
+            //requestQueue.add(new RequestItem<>(new AccountCheckRequest(address.getAddress())));
             requestQueue.add(new RequestItem<>(new PendingTransactionsRequest(address.getAddress(), true, wallet.getBlockCount())));
+            requestQueue.add(new RequestItem<>(new SubscribeRequest(address.getAddress(), getLocalCurrency(), wallet.getUuid())));
             processQueue();
         }
     }

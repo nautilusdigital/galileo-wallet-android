@@ -22,17 +22,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/card_logo"
             android:layout_width="52dp"
             android:layout_height="22dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:contentDescription="@string/app_name"
             app:layout_constraintStart_toEndOf="@+id/card_barcode"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logo" />
+            app:layout_constraintVertical_bias="0.396"
+            android:src="@drawable/ic_galileo_icon" />
 
         <TextView
             android:id="@+id/card_title"
@@ -68,21 +68,6 @@
             app:layout_constraintTop_toBottomOf="@+id/card_logo"
             tools:ignore="SpUsage"
             tools:text="xrb_3ugkt5gexef4ffotr839bwfrfux6pp1g7k8cbtk8ocnq99yc3pfdn11cr1ft" />
-
-        <TextView
-            android:id="@+id/card_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/notosans_regular"
-            android:text="@string/receive_card_label"
-            android:textColor="@color/dark_sky_blue"
-            android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_barcode"
-            tools:ignore="SpUsage" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

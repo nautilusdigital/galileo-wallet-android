@@ -35,18 +35,15 @@
             app:srcCompat="@{accountHistoryItem.isSend ? @drawable/ic_send : @drawable/ic_receive}"
             tools:ignore="UnusedAttribute" />
 
-        <TextView
+        <ImageView
             android:id="@+id/transaction_symbol"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginStart="17dp"
-            android:drawableLeft="@{accountHistoryItem.isSend ? @drawable/ic_currency_nano_blue : @drawable/ic_currency_nano_gray}"
-            android:drawablePadding="3dp"
-            android:drawableStart="@{accountHistoryItem.isSend ? @drawable/ic_currency_nano_blue : @drawable/ic_currency_nano_gray}"
+            android:layout_height="20dp"
             app:layout_constraintBottom_toTopOf="@+id/home_transaction_guideline_horiz"
             app:layout_constraintStart_toEndOf="@+id/transaction_type"
-            app:layout_constraintTop_toTopOf="@+id/home_transaction_guideline_horiz" />
+            app:layout_constraintTop_toTopOf="@+id/home_transaction_guideline_horiz"
+            app:layout_constraintVertical_bias="0.396"
+            android:src="@drawable/ic_galileo_icon" />
 
         <TextView
             android:id="@+id/transaction_amount"
@@ -76,7 +73,7 @@
             style="@style/TextStyle13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{accountHistoryItem.addressShort}"
+            android:text="@{accountHistoryItem.galAddressShort}"
             tools:text="3gntu … p7ijg"
             app:layout_constraintBottom_toTopOf="@+id/home_transaction_guideline_horiz"
             app:layout_constraintEnd_toEndOf="parent"

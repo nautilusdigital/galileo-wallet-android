@@ -104,17 +104,17 @@ public class ReceiveDialogFragment extends BaseDialogFragment {
                 binding.receiveCard.cardAddress != null &&
                 address != null &&
                 address.getAddress() != null) {
-            binding.receiveAddress.setText(UIUtil.getColorizedSpannable(address.getAddress(), getContext()));
-            binding.receiveCard.cardAddress.setText(UIUtil.getColorizedSpannable(address.getAddress(), getContext()));
+            binding.receiveAddress.setText(UIUtil.getColorizedSpannable(address.getGalAddress(), getContext()));
+            binding.receiveCard.cardAddress.setText(UIUtil.getColorizedSpannable(address.getGalAddress(), getContext()));
         }
 
         // generate QR code
         new AwesomeQRCode.Renderer()
-                .contents(address.getAddress())
+                .contents(address.getGalAddress())
                 .size((int) UIUtil.convertDpToPixel(QRCODE_SIZE, getContext()))
                 .margin((int) UIUtil.convertDpToPixel(20, getContext()))
                 .dotScale(0.55f)
-                .background(BitmapFactory.decodeResource(getResources(), R.drawable.qrbackground))
+                .background(BitmapFactory.decodeResource(getResources(), R.drawable.ic_galileo_background))
                 .renderAsync(new AwesomeQRCode.Callback() {
                     @Override
                     public void onRendered(AwesomeQRCode.Renderer renderer, final Bitmap bitmap) {
@@ -199,7 +199,7 @@ public class ReceiveDialogFragment extends BaseDialogFragment {
 
             // copy address to clipboard
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText(ClipboardAlarmReceiver.CLIPBOARD_NAME, address.getAddress());
+            android.content.ClipData clip = android.content.ClipData.newPlainText(ClipboardAlarmReceiver.CLIPBOARD_NAME, address.getGalAddress());
             if (clipboard != null) {
                 clipboard.setPrimaryClip(clip);
             }

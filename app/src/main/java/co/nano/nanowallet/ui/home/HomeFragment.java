@@ -151,7 +151,7 @@ public class HomeFragment extends BaseFragment {
         // set status bar to blue
         setStatusBarBlue();
         setTitle("");
-        setTitleDrawable(R.drawable.ic_logo_toolbar);
+        setTitleDrawable(R.drawable.ic_galileo_icon);
         setBackEnabled(false);
 
         // inflate the view
@@ -166,7 +166,6 @@ public class HomeFragment extends BaseFragment {
 
         // initialize view pager (swipeable currency list)
         binding.homeViewpager.setAdapter(new CurrencyPagerAdapter(getContext(), wallet));
-        binding.homeTabs.setupWithViewPager(binding.homeViewpager, true);
 
         // initialize recyclerview (list of wallet transactions)
         controller = new WalletController();

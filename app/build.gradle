@@ -27,7 +27,7 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        buildConfigField "String", "CONNECTION_URL", "\"ws://34.220.55.202:8081\""
+        buildConfigField "String", "CONNECTION_URL", "\"ws://node-001.galileocoin.com:8081\""
     }
     buildTypes {
         debug {

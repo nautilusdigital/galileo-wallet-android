@@ -24,6 +24,7 @@ import co.nano.nanowallet.NanoUtil;
 public class Address implements Serializable {
     private String value;
     private String amount;
+    private String galValue;
 
     public static final BigDecimal RAW_PER_NANO = new BigDecimal("1000000000000000000000000000000");
 
@@ -32,6 +33,7 @@ public class Address implements Serializable {
 
     public Address(String value) {
         this.value = value;
+        this.galValue = value.replace("xrb_", "gal_");
         parseAddress();
     }
 
@@ -43,6 +45,10 @@ public class Address implements Serializable {
         return value.contains("nano_");
     }
 
+    public boolean hasGalAddressFormat() {
+        return galValue.contains("gal_");
+    }
+
     public String getShortString() {
         int frontStartIndex = 0;
         int frontEndIndex = hasXrbAddressFormat() ? 9 : 10;
@@ -50,6 +56,15 @@ public class Address implements Serializable {
         return value.substring(frontStartIndex, frontEndIndex) +
                 "..." +
                 value.substring(backStartIndex, value.length());
+    }
+
+    public String getGalShortString() {
+        int frontStartIndex = 0;
+        int frontEndIndex = hasGalAddressFormat() ? 9 : 10;
+        int backStartIndex = galValue.length() - 5;
+        return galValue.substring(frontStartIndex, frontEndIndex) +
+                "..." +
+                galValue.substring(backStartIndex, galValue.length());
     }
 
     public Spannable getColorizedShortSpannable() {
@@ -64,12 +79,32 @@ public class Address implements Serializable {
         return s;
     }
 
+    public Spannable getColorizedGalShortSpannable() {
+        Spannable s = new SpannableString(getGalShortString());
+        int frontStartIndex = 0;
+        int frontEndIndex = hasGalAddressFormat() ? 9 : 10;
+        int backStartIndex = s.length() - 5;
+
+        // colorize the string
+        s.setSpan(new ForegroundColorSpan(Color.parseColor("#4a90e2")), frontStartIndex, frontEndIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new ForegroundColorSpan(Color.parseColor("#e1990e")), backStartIndex, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return s;
+    }
+
     public String getAddress() {
         return value;
     }
 
+    public String getGalAddress() {
+        return galValue;
+    }
+
     public String getAddressWithoutPrefix() {
         return value.replace("xrb_", "");
+    }
+
+    public String getGalAddressWithoutPrefix() {
+        return galValue.replace("gal_", "");
     }
 
     public String getAmount() {
@@ -81,7 +116,7 @@ public class Address implements Serializable {
         if (parts.length != 2) {
             return false;
         }
-        if (!parts[0].equals("xrb") && !parts[0].equals("nano")) {
+        if (!parts[0].equals("xrb") && !parts[0].equals("nano") && !parts[0].equals("gal")) {
             return false;
         }
         if (parts[1].length() != 60) {
