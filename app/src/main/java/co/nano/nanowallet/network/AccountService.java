@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.LinkedTreeMap;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -542,6 +543,11 @@ public class AccountService {
                 }
             }
         }
+        else if (linkedTreeMap.containsKey("balance")) {
+            String stringBalance = linkedTreeMap.get("balance").toString();
+            BigDecimal balance = new BigDecimal(stringBalance);
+            wallet.setAccountBalance(balance);
+        }
         requestQueue.poll();
         processQueue();
     }
@@ -603,9 +609,9 @@ public class AccountService {
     public void requestUpdate() {
         if (address != null && address.getAddress() != null) {
             requestQueue.add(new RequestItem<>(new AccountHistoryRequest(address.getAddress(), wallet.getBlockCount() != null ? wallet.getBlockCount() : 10)));
-            //requestQueue.add(new RequestItem<>(new AccountCheckRequest(address.getAddress())));
+            requestQueue.add(new RequestItem<>(new AccountCheckRequest(address.getAddress())));
             requestQueue.add(new RequestItem<>(new PendingTransactionsRequest(address.getAddress(), true, wallet.getBlockCount())));
-            requestQueue.add(new RequestItem<>(new SubscribeRequest(address.getAddress(), getLocalCurrency(), wallet.getUuid())));
+            //requestQueue.add(new RequestItem<>(new SubscribeRequest(address.getAddress(), getLocalCurrency(), wallet.getUuid())));
             processQueue();
         }
     }
