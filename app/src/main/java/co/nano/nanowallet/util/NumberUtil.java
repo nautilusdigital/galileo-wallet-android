@@ -34,7 +34,7 @@ public class NumberUtil {
      */
     public static String getRawAsUsableString(String raw) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-        numberFormat.setMaximumFractionDigits(6);
+        numberFormat.setMaximumFractionDigits(2);
         return numberFormat.format(getRawAsUsableAmount(raw));
     }
 
