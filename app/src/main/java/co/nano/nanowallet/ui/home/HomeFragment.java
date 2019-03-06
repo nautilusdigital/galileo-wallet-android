@@ -177,9 +177,8 @@ public class HomeFragment extends BaseFragment {
         });
         if (wallet != null && wallet.getAccountHistory() != null) {
             controller.setData(wallet.getAccountHistory(), new ClickHandlers());
+            updateAmounts();
         }
-
-        updateAmounts();
 
         Credentials credentials = realm.where(Credentials.class).findFirst();
 //        if (credentials != null && !credentials.getHasAnsweredAnalyticsQuestion()) {

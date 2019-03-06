@@ -186,7 +186,7 @@ public class ReceiveDialogFragment extends BaseDialogFragment {
             Uri imageUri = FileProvider.getUriForFile(getContext(), "co.nano.nanowallet.fileprovider", newFile);
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, address.getAddress());
+            shareIntent.putExtra(Intent.EXTRA_TEXT, address.getGalAddress());
             shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
             shareIntent.setDataAndType(imageUri, getActivity().getContentResolver().getType(imageUri));
             shareIntent.setType("image/*");

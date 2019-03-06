@@ -19,7 +19,6 @@ public class WalletController extends Typed2EpoxyController<List<AccountHistoryR
             new TransactionBindingModel_()
                     .id(accountHistoryItem.getHash())
                     .accountHistoryItem(accountHistoryItem)
-                    .handlers(clickHandlers)
                     .addTo(this);
         }
     }

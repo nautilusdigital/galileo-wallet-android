@@ -70,7 +70,7 @@
                 style="@style/SmallButton"
                 android:layout_width="match_parent"
                 android:layout_margin="34dp"
-                android:enabled="false"
+                android:enabled="true"
                 android:onClick="@{handlers::onClickAccept}"
                 android:text="@string/webview_agreement_accept_cta" />
 
